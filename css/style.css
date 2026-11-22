@@ -1,0 +1,593 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Georgia', sans-serif;
+}
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #ffe0ec 0%, #ffc2d9 50%, #ffb3d1 100%);
+  --text-main: #5a2a3d;
+  --text-soft: #a04a6b;
+  --text-muted: #b06a85;
+  --accent: #d6336c;
+  --accent-light: #ff6ba3;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(255, 255, 255, 0.9);
+  --card-shadow: rgba(214, 51, 108, 0.15);
+  --card-shadow-hover: rgba(214, 51, 108, 0.25);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  padding: 20px;
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Фон сердечек */
+.hearts-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.hearts-bg span {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.3;
+  animation: float 12s linear infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Заголовок */
+header {
+  text-align: center;
+  padding: 30px 20px 20px;
+}
+header h1 {
+  font-size: 2.8rem;
+  color: var(--accent);
+  text-shadow: 2px 2px 8px rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+}
+header p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+/* Карточки */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 25px 30px;
+  margin: 20px 0;
+  box-shadow: 0 8px 32px var(--card-shadow);
+  border: 2px solid var(--card-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--card-shadow-hover);
+}
+.card h2 {
+  color: var(--accent);
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card h2.center { justify-content: center; }
+
+.center { text-align: center; }
+.mt-15 { margin-top: 15px; }
+.hint { color: var(--text-soft); margin-bottom: 10px; font-size: 0.95rem; }
+
+/* Счётчик */
+.counter-box { text-align: center; padding: 35px 20px; }
+.counter-number {
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  text-shadow: 3px 3px 0 rgba(255,255,255,0.9);
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15%      { transform: scale(1.08); }
+  30%      { transform: scale(1); }
+  45%      { transform: scale(1.05); }
+}
+.counter-label { font-size: 1.2rem; color: var(--text-soft); margin-top: 10px; }
+.counter-sub   { font-size: 0.95rem; color: var(--text-muted); margin-top: 15px; font-style: italic; }
+
+/* Галерея */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.gallery-item {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #ffd6e7, #ffb3d1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: 2px dashed var(--accent-light);
+  overflow: hidden;
+}
+.gallery-item:hover { transform: scale(1.05) rotate(2deg); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Список любви */
+.love-list { list-style: none; }
+.love-list li {
+  padding: 12px 15px;
+  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  border-left: 4px solid var(--accent-light);
+  font-size: 1.05rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.love-list li:hover { transform: translateX(6px); background: rgba(255, 255, 255, 0.9); }
+.love-list li::before { content: "💗 "; }
+
+/* Кнопки */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(214, 51, 108, 0.35);
+  margin: 5px;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(214, 51, 108, 0.5); }
+.btn:active { transform: translateY(0); }
+
+/* Комплимент */
+.compliment-box {
+  text-align: center;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--text-soft);
+  font-style: italic;
+  transition: all 0.4s ease;
+}
+
+/* Календарь */
+.dates-list { list-style: none; }
+.dates-list li {
+  padding: 12px 15px;
+  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid var(--accent);
+}
+.dates-list .date-label { font-weight: 600; }
+.dates-list .date-value { font-size: 0.95rem; color: var(--text-muted); }
+.dates-list .date-days {
+  background: var(--accent-light);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Достижения */
+.achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.achievement {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.achievement.unlocked {
+  border-color: var(--accent-light);
+  background: rgba(255, 255, 255, 0.9);
+}
+.achievement.locked { opacity: 0.4; filter: grayscale(1); }
+.achievement .icon { font-size: 2rem; }
+.achievement .name { font-size: 0.9rem; margin-top: 8px; font-weight: 600; }
+.achievement .desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+/* Игры */
+.games { text-align: center; margin-bottom: 15px; }
+.game-area { min-height: 150px; }
+
+.heart-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 400px;
+  margin: 15px auto;
+}
+.heart-cell {
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+.heart-cell:hover { background: rgba(255, 255, 255, 0.9); transform: scale(1.05); }
+.heart-cell.opened { background: rgba(255, 107, 163, 0.3); }
+
+.quiz-question { font-size: 1.1rem; margin: 15px 0; font-weight: 600; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; max-width: 400px; margin: 0 auto; }
+.quiz-option {
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+.quiz-option:hover { background: rgba(255, 255, 255, 0.9); }
+.quiz-option.correct { background: rgba(107, 255, 163, 0.5); border-color: #4caf50; }
+.quiz-option.wrong   { background: rgba(255, 107, 107, 0.5); border-color: #f44336; }
+.quiz-result { text-align: center; font-size: 1.2rem; font-weight: 600; margin-top: 15px; }
+
+/* Воспоминания */
+.memory-form { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+.memory-form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 18px;
+  border-radius: 30px;
+  border: 2px solid rgba(255, 107, 163, 0.4);
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.memory-form input:focus { border-color: var(--accent); }
+
+.memory-wall { display: flex; flex-direction: column; gap: 10px; }
+.memory-item {
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  border-left: 4px solid var(--accent-light);
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.memory-item .memory-text { padding-right: 30px; }
+.memory-item .memory-delete {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.memory-item .memory-delete:hover { color: #f44336; }
+.memory-empty { text-align: center; color: var(--text-muted); font-style: italic; padding: 20px; }
+
+/* Секреты */
+.secrets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+.secret-item {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #ffd6e7, #ffb3d1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: 2px dashed var(--accent-light);
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+.secret-item.opened {
+  background: rgba(255, 255, 255, 0.9);
+  border-style: solid;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  font-style: italic;
+}
+.secret-item:hover { transform: scale(1.05) rotate(2deg); }
+
+/* Плеер */
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px 18px 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 20px rgba(214, 51, 108, 0.3);
+  z-index: 100;
+}
+.music-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.music-btn:hover { transform: scale(1.1); }
+.music-title { font-size: 0.85rem; color: var(--text-soft); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#musicVolume { width: 70px; accent-color: var(--accent); }
+
+/* Переключатель темы */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(214, 51, 108, 0.3);
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+.theme-toggle:hover { transform: rotate(20deg) scale(1.1); }
+
+/* Модалка галереи */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal.active { display: flex; }
+.modal img { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 0 60px rgba(255, 107, 163, 0.5); }
+.modal-close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Footer */
+footer { text-align: center; padding: 30px 20px; color: var(--text-soft); font-size: 0.95rem; }
+footer .heart {
+  color: var(--accent);
+  font-size: 1.3rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* --- Планировщик свиданий --- */
+.planner-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 20px;
+  border-radius: 18px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+.planner-form input, 
+.planner-form select {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 107, 163, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+  color: #333;
+  transition: border-color 0.3s;
+}
+.planner-form input:focus, 
+.planner-form select:focus {
+  border-color: var(--accent);
+}
+.planner-form .btn.full-width {
+  margin: 0;
+  width: 100%;
+}
+
+.planned-dates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.planned-date-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding: 18px 20px;
+  border-left: 5px solid var(--accent);
+  position: relative;
+  box-shadow: 0 4px 15px rgba(214, 51, 108, 0.1);
+  animation: slideIn 0.3s ease;
+}
+.planned-date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.planned-date-type {
+  font-size: 0.85rem;
+  background: var(--accent-light);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.planned-date-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+.planned-date-time {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.planned-date-notes {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .planner-form { grid-template-columns: 1fr; }
+  header h1 { font-size: 2rem; }
+  .counter-number { font-size: 3.5rem; }
+  .card { padding: 20px; }
+  .music-player { bottom: 10px; right: 10px; padding: 8px; }
+  .music-title, #musicVolume { display: none; }
+}
+
+/* --- Модалка для отправки --- */
+.share-modal {
+  z-index: 2000;
+}
+.share-content {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  border: 2px solid var(--card-border);
+  color: var(--text-main);
+}
+.share-content h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.share-content p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin-bottom: 15px;
+}
+.share-content textarea {
+  width: 100%;
+  height: 150px;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 107, 163, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+  margin-bottom: 15px;
+  color: #333;
+}
+.share-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.share-buttons .btn {
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  margin: 0;
+}
