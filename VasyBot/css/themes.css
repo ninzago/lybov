@@ -1,0 +1,87 @@
+/* Тёмная ночная тема */
+body.theme-night {
+  --bg-gradient: linear-gradient(135deg, #1a0f1f 0%, #2d1a2e 50%, #1f0f24 100%);
+  --text-main: #f0d9e5;
+  --text-soft: #d9a8c5;
+  --text-muted: #b88fa8;
+  --accent: #ff6ba3;
+  --accent-light: #ff8fbb;
+  --card-bg: rgba(45, 25, 50, 0.7);
+  --card-border: rgba(255, 143, 187, 0.3);
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: rgba(255, 107, 163, 0.3);
+}
+body.theme-night .love-list li,
+body.theme-night .compliment-box,
+body.theme-night .dates-list li,
+body.theme-night .achievement,
+body.theme-night .memory-item,
+body.theme-night .memory-form input,
+body.theme-night .heart-cell,
+body.theme-night .quiz-option,
+body.theme-night .music-player,
+body.theme-night .theme-toggle {
+  background: rgba(60, 35, 65, 0.7);
+  color: var(--text-main);
+}
+
+/* Лавандовая тема */
+body.theme-lavender {
+  --bg-gradient: linear-gradient(135deg, #ece0ff 0%, #d9c2ff 50%, #c9a8ff 100%);
+  --text-main: #4a2a5a;
+  --text-soft: #7a4a9b;
+  --text-muted: #8f6aad;
+  --accent: #7c3aed;
+  --accent-light: #a78bfa;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(255, 255, 255, 0.9);
+  --card-shadow: rgba(124, 58, 237, 0.15);
+  --card-shadow-hover: rgba(124, 58, 237, 0.25);
+}
+
+/* Персиковая тема */
+body.theme-peach {
+  --bg-gradient: linear-gradient(135deg, #ffe8d6 0%, #ffd4b3 50%, #ffbfa3 100%);
+  --text-main: #5a3a2a;
+  --text-soft: #a06a4b;
+  --text-muted: #b88a6b;
+  --accent: #e07856;
+  --accent-light: #ff9b73;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(255, 255, 255, 0.9);
+  --card-shadow: rgba(224, 120, 86, 0.15);
+  --card-shadow-hover: rgba(224, 120, 86, 0.25);
+}
+
+/* Исправление для Планировщика в тёмной теме */
+body.theme-night .planner-form {
+  background: rgba(0, 0, 0, 0.2);
+}
+body.theme-night .planner-form input,
+body.theme-night .planner-form select {
+  background: rgba(45, 25, 50, 0.9);
+  color: #f0d9e5;
+  border-color: rgba(255, 143, 187, 0.3);
+}
+body.theme-night .planner-form input::placeholder {
+  color: rgba(240, 217, 229, 0.5);
+}
+body.theme-night .planner-form label {
+  color: #d9a8c5;
+}
+body.theme-night .planned-date-card {
+  background: rgba(60, 35, 65, 0.7);
+}
+body.theme-night .planned-date-title {
+  color: #ff8fbb;
+}
+body.theme-night .planned-date-notes {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Тёмная тема для модалки шаринга */
+body.theme-night .share-content textarea {
+  background: rgba(45, 25, 50, 0.9);
+  color: var(--text-main);
+  border-color: rgba(255, 143, 187, 0.3);
+}
